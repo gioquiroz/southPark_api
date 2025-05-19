@@ -9,12 +9,12 @@ const getAllItemsApi = async (url) => {
         //? respuesta de la api
         const data = await response.json()
         console.log(data);
-
         for (let index of data.data) {
             const apiResults = await fetch(index.url).then(res => res.json())
 
             printElementsApi(apiResults)
         }
+        console.log(data.meta.per_page);
 
     } catch (error) {
         console.log("Encontré este error " + error);
@@ -30,6 +30,7 @@ const printElementsApi = (characters) => {
             <td>${characters.data.age}</td>
             <td>${characters.data.religion}</td>
             <td>${characters.data.occupation}</td>
+            <td><input type="submit" value="Información" class="btn btn-primary"></input></td>
         </tr>
     `
     tableBody.innerHTML += tableApi
